@@ -1,38 +1,128 @@
-<index.html>
+
   <!DOCTYPE html>
-<hrml>
+<html>
 <head>
-  <title>
-    event registration from
-  </title>
-  <style>
-  <body>
-    {
-      front_famliy:sans_serif;
-    }
-    #registration from label
-    {
-      display:block;
-      margin_bottom:5px;
-    }
-    #registration from input;
-    #registration from select
-    {
-      width:100%;
-      padding:10px;
-      margin_bottom:10px;
-      border:4px solid#ccc;
-      box_sizing:border_box;
-    }
-  </style>
+    <title>Event Registration Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-  <body>
-    <h1>event registration</h1>
-    <form id="registration form">
-      <label for="first name">first name:</label><br>
-      <input tyoe=":first name">first name:</label><br>
+<body>
+
+<div id="registrationForm">
+    <h1>Event Registration</h1>
+
+    <form id="registrationFormData">
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="event">Event Preference:</label>
+        <select id="event" name="event">
+            <option value="Workshop1">Workshop 1</option>
+            <option value="Workshop2">Workshop 2</option>
+            <option value="Session1">Session 1</option>
+            <option value="Session2">Session 2</option>
+        </select>
+
+        <label for="referral">How did you hear about this event?</label>
+        <input type="text" id="referral" name="referral">
+
+        <input type="submit" value="Register">
+    </form>
+
+    <p id="currentTime"></p>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#registrationForm {
+    background: #fff;
+    padding: 30px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#registrationForm h1 {
+    text-align: center;
+}
+
+#registrationForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#registrationForm input,
+#registrationForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+#registrationForm input:focus,
+#registrationForm select:focus {
+    outline: none;
+    border-color: #5cb85c;
+}
+
+#registrationForm input[type="submit"] {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#registrationForm input[type="submit"]:hover {
+    background: #4cae4c;
+}
+const form = document.getElementById("registrationFormData");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const email = document.getElementById("email").value;
+
+    if (firstName === "" || lastName === "" || email === "") {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    alert("Thank you for registering!");
+    form.reset();
+});
+
+function showTime() {
+    document.getElementById("currentTime").innerHTML =
+        new Date().toUTCString();
+}
+
+showTime();
+setInterval(showTime, 1000);    
       
-      
-  
-</hrml>
-</index.html>
+ 
